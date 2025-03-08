@@ -1,0 +1,15 @@
+﻿version: '3.8'
+
+services:
+    web:
+        image: poosarla/healthcheck3
+        # build: .
+        ports:
+         - "8082:8080"
+        deploy:
+          replicas: 3
+        healthcheck:
+          test: ["CMD", "curl", "-f", "http://localhost:8080/api/StatusCheck"]
+          interval: 1m
+          timeout: 10s
+          retries: 3
